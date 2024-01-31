@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>QR code generator</title>
+</head>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    --body-color: #E4E9F7;
+    --container-color: #FFF;
+    --primary-color: #695CFE;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #707070;
+
+    --tran-05: all 0.5s ease;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow-y: auto;
+}
+
+body {
+    background: var(--body-color);
+    user-select: none;
+}
+
+header {
+    width: 100%;
+    height: 70px;
+    padding: 15px 15px 15px;
+    background: var(--container-color);
+    display: flex;
+    align-items: center;
+}
+
+.pheader {
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 13px;
+}
+
+.pheader2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 13px;
+    text-align: center;
+}
+
+.pheader2qr {
+    font-size: 21px;
+    font-weight: 700;
+    text-align: justify;
+    color: var(--text-color);
+}
+
+.icon {
+    font-size: 40px;
+}
+
+.container {
+    width: auto;
+    height: auto;
+    padding: 19px 19px 19px;
+    background: var(--container-color);
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    border-radius: 7px;
+}
+
+.container2 {
+    width: auto;
+    height: auto;
+    padding: 19px 19px 19px;
+    background: var(--container-color);
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    border-radius: 7px;
+    display: flex;
+}
+
+.p2con3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-align: justify;
+    color: var(--text-color);
+}
+
+.p2con34 {
+    font-size: 13px;
+    font-weight: 700;
+    text-align: justify;
+    color: var(--text-color);
+    margin-top: 25px;
+}
+
+.p2con2qr {
+    font-size: 13px;
+    font-weight: 700;
+    text-align: justify;
+    color: var(--text-color);
+}
+
+.laporkan,
+.laporkan2 {
+    width: 150px;
+    padding: 7px;
+    background: var(--primary-color);
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    margin-top: 73px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.conqr {
+    width: 300px;
+    height: auto;
+    padding: 15px 15px 15px;
+    border-radius: 7px;
+    border: 2px solid var(--text-color);
+}
+
+.conqr2 {
+    width: 790px;
+    height: 410px;
+    margin-left: 50px;
+    border-radius: 7px;
+}
+
+.inputqr {
+    width: 100%;
+    padding: 8px;
+    font-weight: 600;
+    margin-top: 17px;
+    border: none;
+    outline: none;
+    background: var(--primary-color-light);
+    border-radius: 7px;
+}
+
+.butqr {
+    width: 100%;
+    padding: 7px;
+    font-weight: 600;
+    border: none;
+    background: var(--primary-color);
+    border-radius: 7px;
+    color: #fff;
+    margin-top: 7px;
+    cursor: pointer;
+}
+
+.butqrgene {
+    width: 100%;
+    padding: 7px;
+    font-weight: 600;
+    border: none;
+    background: var(--primary-color);
+    border-radius: 7px;
+    color: #fff;
+    margin-top: 7px;
+    cursor: pointer;
+}
+
+.conimqr {
+    width: auto;
+    height: 180px;
+    margin-top: 27px;
+    border-radius: 7px;
+    padding: 15px 15px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--text-color);
+}
+
+.imgqrqr {
+    border-radius: 7px;
+    width: 130px;
+    transition: var(--tran-05);
+}
+
+@media screen and (max-width: 743px) {
+    body {
+        zoom: 0.9;
+    }
+
+    .conqr2 {
+        display: none;
+    }
+    
+    .conqr {
+        width: 100%;
+    }
+
+    .laporkan {
+        width: 100%;
+    }
+
+    .laporkan2 {
+        width: 100%;
+        margin-top: 7px;
+    }
+}
+</style>
+
+<body>
+    <header>
+        <i class='bx bx-qr-scan icon'></i> <p class="pheader">QR Code Generator</p>
+    </header>
+
+    <div class="container2">
+        <div class="conqr">
+            <p class="pheader2">QR Code Generator</p>
+            <input class="inputqr" type="text" placeholder="Masukkan teks atau url">
+            <button class="butqrgene">Generate</button>
+            <button class="butqr" onclick="restartqr()">Reset</button>
+
+            <div class="conimqr">
+                <img class="imgqrqr" src="">
+            </div>
+        </div>
+
+        <div class="conqr2">
+            <p class="pheader2qr">Tentang kami</p>
+            <p class="p2con2qr">( Tentang pembuatan website ini )</p>
+
+            <p class="p2con34">Kami membuat website ini dengan bantuan teman saya yaitu seseorang dan tim go brain go racing dan kami membuat ini bertujuan untuk sebagai alat atau tools yang berguna untuk warga gadget untuk membuat qr code secara cepat dan aman dan terpercaya.</p>
+            <p class="p2con34">Membuat qr code dengan mudah aman dan terpercaya dan juga cepat sesuaikan dengan internet kalian jika ingin cepat anda bisa menggunakan internet yang cepat stabil dan bagus jika ingin agak lambat dikit anda bisa memakai kecepatan yang normal saja.</p>
+            <p class="p2con34">QR code generator membuat dengan secepat kilat dan hasilnya mantap. Jangan lupa jika anda ada kabar gembira di website ini anda bisa scroll ke bawah dan kirim sms lewat whatsapp dan anda bisa membicarakan tentang kekurangan dan kelebihan website ini di whatsapp saya.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <p class="p2con3">Apa itu qr code, qr code adalah suatu jenis kode matriks dua dimensi yang dapat menyimpan informasi dalam bentuk data biner. QR code sering digunakan untuk menyematkan data seperti teks, URL, atau informasi lainnya dalam suatu gambar berbentuk persegi dengan pola hitam dan putih. Kode ini dapat dengan sangat cepat dibaca oleh perangkat seperti kamera smartphone atau alat pemindai QR code untuk mengakses informasi yang terkandung di isi qr dalamnya. QR code banyak digunakan dalam berbagai aplikasi, termasuk juga untuk pembayaran digital, pemasaran, dan identifikasi produk.</p>
+        <p class="p2con34">Api qr code yaitu dapat memungkinkan pengembang untuk mengintegrasikan fungsionalitas atau pembuatan dan pembacaan QR code ke dalam aplikasi atau situs web mereka. Berikut adalah beberapa poin penting terkait api qr code. Jika anda tertarik anda bisa scroll ke bawah dan di bawah akan ada api kode yang akan saya siapkan di bawah website kami. Dan kami berterimakasih kepada qr code api dikarenakan saya bisa membuat website ini dengan bantuan api kode tersebut. Nah jika anda ingin membuat qr code dengan mudah aman dan cepat anda bisa ke website kami dan mencobanya secara langsung.</p>
+        <p class="p2con34">Jika anda minat dengan source kode website ini anda bisa ke bawah dan di bawah ada button untuk api kode dan sorce kode dari website ini dan jika anda minat dengan api nya jangan lupa lihat ke bawah dan temukan tombol api kode di situ.</p>
+        <button class="laporkan" onclick="laporan()">Laporkan</button>
+        <button class="laporkan2" onclick="source()">Source</button>
+        <button class="laporkan2" onclick="api()">API</button>
+    </div>
+
+    <script>
+    const wrapper = document.querySelector(".container2"), qrInput = wrapper.querySelector(".inputqr"), generateBtn = wrapper.querySelector(".butqrgene"), qrImg = wrapper.querySelector(".conimqr .imgqrqr");
+    let preValue;
+
+    generateBtn.addEventListener("click", () => {
+        let qrValue = qrInput.value.trim();
+        if (!qrValue || preValue === qrValue) return;
+
+        preValue = qrValue;
+        generateBtn.innerText = "Generating QR Code";
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${qrValue}`;
+
+        qrImg.addEventListener("load", () => {
+            wrapper.classList.add("active");
+            generateBtn.innerText = "Generate QR Code";
+            downloadQRCode(qrImg.src);
+        });
+    });
+
+    qrInput.addEventListener("keyup", () => {
+        if (!qrInput.value.trim()) {
+            wrapper.classList.remove("active");
+            preValue = "";
+        }
+    });
+
+    function downloadQRCode(qrCodeUrl) {
+    fetch(qrCodeUrl)
+        .then(response => response.blob())
+        .then(blob => {
+            var blobUrl = window.URL.createObjectURL(blob);
+
+            var link = document.createElement("a");
+            link.href = blobUrl;
+            link.download = "qr_code.png";
+
+            link.click();
+            window.URL.revokeObjectURL(blobUrl);
+        });
+    }
+
+    function restartqr() {
+        location.reload();
+    }
+
+    function laporan() {
+        window.location.href = "https://api.whatsapp.com/send/?phone=082331656027&text&type=phone_number&app_absent=0"
+    }
+
+    function source() {
+        window.location.href = "https://drive.google.com/file/d/1Ep6ehn_SHR-yC9HUePVa7QC1VERi7eMJ/view?usp=sharing"
+    }
+
+    function api() {
+        window.location.href = "https://goqr.me/api/"
+    }
+    </script>
+</body>
+</html>
